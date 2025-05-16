@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Available Surveys{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h1>Available Surveys</h1>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-auto">
+        <a href="{% url 'surveys:survey_create' %}" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Create Survey
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% if surveys %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for survey in surveys %}
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ survey.title }}</h5>
+                <p class="card-text">{{ survey.description|truncatewords:20 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{% url 'surveys:survey_detail' survey.pk %}" class="btn btn-sm btn-outline-primary">
+                        View Details
+                    </a>
+                    <small class="text-muted">
+                        {{ survey.responses.count }} response{{ survey.responses.count|pluralize }}
+                    </small>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="{% url 'surveys:survey_response' survey.pk %}" class="btn btn-success w-100">
+                    Take Survey
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    No surveys available at the moment.
+</div>
+{% endif %}
+{% endblock %}
