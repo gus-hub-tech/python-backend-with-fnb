@@ -1,4 +1,4 @@
-Sure! Here's the entire content of the `README.md` file **as a single file** including code blocks and explanations, ready to copy-paste or save directly:
+
 
 ````markdown
 # Django Data Display with Node.js Express
@@ -28,7 +28,7 @@ npm init -y
 ### 📦 Step 2: Install Dependencies
 
 ```bash
-npm install express axios ejs
+npm install express axios ejs / npm install express axios ejs bootstrap@5
 ```
 
 **Dependencies:**
