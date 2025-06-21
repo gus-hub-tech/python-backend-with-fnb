@@ -1,6 +1,7 @@
-# 📝 Django Survey API & Node.js Data Display
+# 🗄️ Django Server Data Management Application
 
-This repository provides a Django REST Framework backend for creating and managing surveys, along with a Node.js + Express example for fetching and displaying survey data. It serves as both a Django API starter template and a full-stack example for integrating Django with a Node.js frontend.
+Welcome to the **python-backend-with-fnb** repository!  
+This project is a robust server data management application built using **Django** (Python) and styled with **Bootstrap**. It serves as a backend foundation for managing, displaying, and interacting with server-side data, providing both REST API capabilities and a modern web interface.
 
 ---
 
@@ -8,144 +9,113 @@ This repository provides a Django REST Framework backend for creating and managi
 
 - [Project Overview](#project-overview)
 - [Features](#features)
-- [Project Structure](#project-structure)
-- [Django Backend](#django-backend)
-  - [Survey API](#survey-api)
-  - [Authentication](#authentication)
-  - [Requirements](#requirements)
-- [Node.js Example](#nodejs-example)
-  - [Setup Steps](#setup-steps)
-  - [Important Considerations](#important-considerations)
-- [Development Environment](#development-environment)
+- [Tech Stack](#tech-stack)
+- [Repository Structure](#repository-structure)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Development](#development)
 - [License](#license)
 
 ---
 
 ## Project Overview
 
-- **Django Backend:** Provides a REST API for surveys with full CRUD (Create, Read, Update, Delete) support, requiring authentication. Built with Django and Django REST Framework.
-- **Node.js Example:** Demonstrates how to fetch data from the Django API using an Express server and display it with EJS templates.
+This application leverages Django for backend logic, data modeling, and API endpoints, while Bootstrap is used for rapid UI prototyping and responsive design. The goal is to provide a scalable, secure, and maintainable platform for server data management and visualization.
 
 ---
 
 ## Features
 
-- 🔒 **Authentication Required:** Uses Django REST Framework's token/session authentication.
-- 📝 **Survey CRUD:** Create, retrieve, update, and delete surveys.
-- 👤 **User Tracking:** Automatically records which user created each survey.
-- 🧩 **Modular Architecture:** Clean separation for scalability and maintainability.
-- 🌐 **Node.js Integration Example:** Fetches and displays API data using Express and EJS.
+- 🔒 **User Authentication**: Secure login and session management using Django’s authentication system.
+- 📝 **CRUD Operations**: Full Create, Read, Update, and Delete support for server-side models.
+- 📊 **API Endpoints**: RESTful APIs for data integration and external access.
+- 🖥️ **Web Interface**: Responsive Bootstrap-based web views for interacting with data.
+- 🛠️ **Modular Architecture**: Easy to extend and maintain, with clear separation of concerns.
+- 📦 **Requirements Management**: Uses `requirements.txt` for Python dependencies.
+- 🧪 **Example Integrations**: Example code for connecting to the API with Node.js/Express and fetching/displaying server data.
 
 ---
 
-## Project Structure
+## Tech Stack
+
+- **Python** (95.5%): Main backend logic using Django.
+- **JavaScript** (1.9%): Used for frontend interactivity (with Node.js/Express examples).
+- **HTML** (1.7%): Templating and static pages.
+- **CSS** (0.8%): Styling via Bootstrap and custom rules.
+- **PowerShell/Shell**: For environment setup and scripting.
+
+---
+
+## Repository Structure
 
 ```
 python-backend-with-fnb/
-├── mysite/
-│   ├── requirements.txt
-│   └── mysite/
-│       └── settings.py
-├── surveys/
-│   ├── models.py
-│   ├── serializers.py
-│   ├── views.py
-│   ├── urls.py
+├── manage.py                # Django project management script
+├── requirements.txt         # Python dependencies
+├── settings.py              # Django settings (location may vary)
+├── surveys/                 # Example Django app (CRUD for surveys)
+│   ├── api/                 # API views and serializers
+│   ├── models.py            # Data models
+│   ├── views.py             # Web/UI views
 │   └── ...
-├── node-js-api-connection.md
-├── surv.md
-├── README.md
-└── manage.py
+├── node-js-api-connection.md# Example for Node.js integration
+├── dev-environment/         # Development environment configs (e.g., .vscode)
+├── templates/               # HTML templates (Bootstrap-based)
+├── static/                  # Static assets (CSS, JS, images)
+├── README.md                # This file
+└── ...
 ```
+*Note: The exact structure may vary as files are added or removed.*
 
 ---
 
-## Django Backend
+## Getting Started
 
-### Survey API
+### Prerequisites
 
-- **SurveyCreateViewSet**: Main endpoint for survey CRUD operations.
-- All operations are restricted to authenticated users.
-- On creation, the `created_by` field is set to the current user.
+- Python 3.7+
+- Node.js (for API integration examples)
+- npm/yarn (for JS dependencies)
+- pip
 
-#### Example Model (`surveys/models.py`):
+### Installation
 
-```python
-from django.db import models
-from django.contrib.auth.models import User
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/gus-hub-tech/python-backend-with-fnb.git
+    cd python-backend-with-fnb
+    ```
 
-class Survey(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Add more fields as needed
-```
+2. **Install Python dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### Authentication
+3. **Run Migrations:**
+    ```bash
+    python manage.py migrate
+    ```
 
-- Uses DRF token/session authentication.
-- Only authenticated users can manage surveys.
-
-### Requirements
-
-Main Python dependencies (see `mysite/requirements.txt`):
-
-```
-Django==5.0.11
-djangorestframework
-asgiref==3.7.2
-sqlparse==0.4.4
-typing_extensions==4.9.0
-```
-> Install packages with:  
-> `pip install -r mysite/requirements.txt`
+4. **Start the development server:**
+    ```bash
+    python manage.py runserver
+    ```
 
 ---
 
-## Node.js Example
+## Usage
 
-The `node-js-api-connection.md` file provides a step-by-step guide to building a Node.js Express server that fetches survey data from the Django API and renders it using EJS.
-
-### Setup Steps
-
-1. **Install Node.js and npm**  
-   [Download here](https://nodejs.org/)
-
-2. **Initialize the Project**
-   ```bash
-   mkdir django-data-display
-   cd django-data-display
-   npm init -y
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   npm install express axios ejs bootstrap@5
-   ```
-
-4. **Create Server and Views**
-   - Build `server.js` to request data from the Django API.
-   - Create the `views` directory and add `display.ejs` for rendering.
-
-5. **Run the App**
-   ```bash
-   node server.js
-   ```
-   Visit `http://localhost:<port>` to view data.
-
-### Important Considerations
-
-- **CORS:** Use `django-cors-headers` in Django if accessing from a different port.
-- **Error Handling:** Add robust error handling for production use.
-- **Security:** Never expose secrets or sensitive data.
-- **Styling:** Use Bootstrap or other CSS frameworks for better UI.
+- Access the web UI at `http://localhost:8000/`.
+- Use the provided REST API endpoints for external integrations.
+- Refer to `node-js-api-connection.md` for Node.js/Express integration examples.
 
 ---
 
-## Development Environment
+## Development
 
-- Uses Nix for reproducible environments (see `.idx/dev.nix`).
-- VSCode extension recommendations for Python development.
+- Use `dev-environment/` for recommended VSCode and other dev tool settings.
+- Add new Django apps or API endpoints as needed.
+- Follow Django best practices for models, views, and templates.
 
 ---
 
@@ -156,7 +126,7 @@ See individual files for additional licensing information if present.
 
 ---
 
-**Feel free to expand, adapt, or integrate this template to fit your own full-stack Django and Node.js applications!**
+*Feel free to expand, adapt, or integrate this template to fit your own full-stack Django and Node.js applications!*
 
 
 # Django
