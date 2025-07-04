@@ -18,7 +18,7 @@ load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev-only')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+#ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-^=6-_k)oh!n9-fpcd1qd0rf(!8y2!!8cc*so1if(!*ydv@*_dc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -170,7 +170,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-firebase-backend-with-fnb-1746996922144.cluster-c3a7z3wnwzapkx3rfr5kz62dac.cloudworkstations.dev'
+    'http://8000-firebase-backend-with-fnb-1746996922144.cluster-c3a7z3wnwzapkx3rfr5kz62dac.cloudworkstations.dev'
 ]
 
 LOGIN_REDIRECT_URL = 'surveys:user_survey_list'
